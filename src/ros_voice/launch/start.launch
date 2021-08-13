@@ -1,0 +1,7 @@
+<launch>
+	<node name="rob_awaken" pkg="ros_voice" type="rob_awaken"/>
+	<node name="rob_iat" pkg="ros_voice" type="rob_iat" output="screen"/>
+	<node name="rob_tts" pkg="ros_voice" type="rob_tts"/>
+	<node name="rob_control" pkg="ros_voice" type="rob_control" output="screen"/>
+	<node name="rob_music" pkg="ros_voice" type="rob_music" output="screen"/>
+</launch>

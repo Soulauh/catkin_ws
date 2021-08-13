@@ -1,0 +1,8 @@
+<launch>
+	<node name="video_pub" pkg="ros_video" type="video_pub" output="screen"/>
+	<node name="rob_iat" pkg="ros_voice" type="rob_iat" output="screen"/>
+	<node name="rob_tts" pkg="ros_voice" type="rob_tts" output="screen"/>
+	<node name="rob_awaken" pkg="ros_voice" type="rob_awaken"/>
+	<node name="rob_control" pkg="ros_voice" type="rob_control" output="screen"/>
+	<node name="ui_view" pkg="ros_ui" type="ui_view" required="true" output="screen"/>
+</launch>
