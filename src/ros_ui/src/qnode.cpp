@@ -71,20 +71,21 @@ void QNode::music_control(char cmdSelect) {
 }
 
 void QNode::video_control(char cmdSelect) {
+  SwitchVideo.request.flag = true;
   switch (cmdSelect) {
-    case 'p': 
-      SwitchVideo.request.flag = true; 
+    case 'v': 
+      video_index = 1; 
       break;
-    case 's': 
-      SwitchVideo.request.flag = false; 
+    case 'c': 
+      video_index = 0;  
       break;
     case 'u': 
-      SwitchVideo.request.flag = true; 
       video_index--; 
+      if (video_index < 1) video_index = 4;
       break;
-    case 'd': 
-      SwitchVideo.request.flag = true; 
+    case 'd':  
       video_index++; 
+      if (video_index > 4) video_index = 1;
       break;
   }
   SwitchVideo.request.index = video_index;

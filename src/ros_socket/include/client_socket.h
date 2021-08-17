@@ -12,7 +12,7 @@
 #include <unistd.h>   
 
 #define CLIENT_PORT  10000 
-#define SERVER_IP_ADDRESS "172.16.60.68"
+#define SERVER_IP_ADDRESS "172.16.60.164"
 
 struct sockaddr_in server_addr;
 

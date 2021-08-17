@@ -52,11 +52,11 @@ find_package(OpenCV REQUIRED)
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
- add_message_files(
-   FILES
-   video.msg
+#  add_message_files(
+#    FILES
+#    video.msg
 #   Message2.msg
- )
+#  )
 
 ## Generate services in the 'srv' folder
 add_service_files(
@@ -156,12 +156,10 @@ include_directories(
 # )
 
 add_executable(video_pub src/video_pub.cpp )
-#必须添加add_dependencies，否则找不到自定义的msg产生的头文件
-add_dependencies(video_pub ros_video_generate_messages_cpp ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(video_pub ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(video_pub ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 add_executable(video_sub src/video_sub.cpp )
-add_dependencies(video_sub ros_video_generate_messages_cpp)
 target_link_libraries(video_sub ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 #############

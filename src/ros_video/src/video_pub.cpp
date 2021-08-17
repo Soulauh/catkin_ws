@@ -21,10 +21,16 @@ bool srvSwitchVideoCallback(ros_video::srvSwitchVideo::Request &req, ros_video::
             capture.open(0);
             break;
         case 1:
-            capture.open("/home/soulauh/test.avi");
+            capture.open("/home/soulauh/.material/video/sun.mp4");
             break;
         case 2:
-            capture.open("/home/soulauh/tree.avi");
+            capture.open("/home/soulauh/.material/video/stars.mp4");
+            break;
+        case 3:
+            capture.open("/home/soulauh/.material/video/clouds.mp4");
+            break;
+        case 4:
+            capture.open("/home/soulauh/.material/video/roads.mp4");
             break;
     }
     if(!capture.isOpened()) {

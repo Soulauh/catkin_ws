@@ -26,6 +26,7 @@ public Q_SLOTS:
 	void updateSocketVideo();
 	void updateVideoArg();
 	void contrloMusic_btn();
+	void contrloVideo_btn();
     	
 private:
 	Ui::MainWindowDesign ui;

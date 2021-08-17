@@ -32,6 +32,9 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     QObject::connect(ui.btn_ps, SIGNAL(clicked()), this, SLOT(contrloMusic_btn()));
     QObject::connect(ui.btn_up, SIGNAL(clicked()), this, SLOT(contrloMusic_btn()));
     QObject::connect(ui.btn_down, SIGNAL(clicked()), this, SLOT(contrloMusic_btn()));
+    QObject::connect(ui.btn_vc_video, SIGNAL(clicked()), this, SLOT(contrloVideo_btn()));
+    QObject::connect(ui.btn_up_video, SIGNAL(clicked()), this, SLOT(contrloVideo_btn()));
+    QObject::connect(ui.btn_down_video, SIGNAL(clicked()), this, SLOT(contrloVideo_btn()));
 
 }
 
@@ -62,33 +65,41 @@ void MainWindow::displayRobotStr() {
 void MainWindow::contrloMusic_btn() {
     QPushButton * btn = qobject_cast<QPushButton*> (sender());
     char k = btn->text().toStdString()[0];
-    bool is_video = ui.checkBox_is_video->isChecked();
     switch (k) {
         case 'p': 
-            if (is_video)
-                qnode.video_control(k);
-            else 
-                qnode.music_control(k);
+            qnode.music_control(k);
             btn->setText("stop");
             break;
         case 's': 
-            if (is_video)
-                qnode.video_control(k);
-            else 
-                qnode.music_control(k);
+            qnode.music_control(k);
             btn->setText("play");
             break;
         case 'u': 
-            if (is_video)
-                qnode.video_control(k);
-            else 
-                qnode.music_control(k);
+            qnode.music_control(k);
             break;
         case 'd': 
-            if (is_video)
-                qnode.video_control(k);
-            else 
-                qnode.music_control(k);
+            qnode.music_control(k);
+            break;    
+    }
+}
+
+void MainWindow::contrloVideo_btn() {
+    QPushButton * btn = qobject_cast<QPushButton*> (sender());
+    char k = btn->text().toStdString()[0];
+    switch (k) {
+        case 'v': 
+            qnode.video_control(k);
+            btn->setText("camera");
+            break;
+        case 'c': 
+            qnode.video_control(k);
+            btn->setText("video");
+            break;
+        case 'u': 
+            qnode.video_control(k);
+            break;
+        case 'd': 
+            qnode.video_control(k);
             break;    
     }
 }
