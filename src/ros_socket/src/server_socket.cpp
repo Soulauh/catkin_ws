@@ -13,7 +13,7 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "server_socket");
   ros::NodeHandle nh;
   image_transport::ImageTransport it(nh);
-  image_transport::Publisher pub = it.advertise("image/socket", 1);
+  image_transport::Publisher pub = it.advertise("image/socket", 10);
   sensor_msgs::ImagePtr imageMsg;
 
   memset(&server_addr,0,sizeof(server_addr));
@@ -34,7 +34,7 @@ int main(int argc, char **argv)
   while (ros::ok())
   {
     length = sizeof(client_socket);
-    int n=recvfrom(server_socket,buffer,sizeof(buffer),0,(struct sockaddr*)&client_socket,&length);
+    int n = recvfrom(server_socket,buffer,sizeof(buffer),0,(struct sockaddr*)&client_socket,&length);
     if ( n < 0) {
       printf("Server Accept Failed!\n");
       break;
@@ -42,9 +42,10 @@ int main(int argc, char **argv)
     decodeImage(n);
     imageMsg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
     pub.publish(imageMsg);
-    ros::spinOnce();
     loop_rate.sleep();   
-  }  
+  }
+  close(server_socket);  
+  close(client_socket);
 }
 
 void decodeImage(int n)

@@ -1,5 +1,4 @@
 #include <ros/ros.h>
-#include <ros_video/video.h>
 #include <ros_video/srvSwitchVideo.h>
 #include <image_transport/image_transport.h>
 #include <opencv2/highgui/highgui.hpp>
@@ -52,7 +51,6 @@ int main(int argc, char** argv) {
     ros::init(argc, argv, "video_pub");
     ros::NodeHandle n;
     image_transport::ImageTransport it(n);
-    ros::Publisher arg_pub = n.advertise<ros_video::video>("image/arg", 10);
     ros::ServiceServer service = n.advertiseService("ros_video/switch_video", srvSwitchVideoCallback);
     image_transport::Publisher pub = it.advertise("image/local", 100);
     sensor_msgs::ImagePtr msg;
