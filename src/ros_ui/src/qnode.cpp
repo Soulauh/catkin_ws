@@ -24,7 +24,6 @@ bool QNode::init() {
   musicControl_pub = n.advertise<std_msgs::String>("music/control", 10);
 	videoLocal_sub  = it.subscribe("image/local", 100, &QNode::videoLocalCallback, this);
   videoSocket_sub  = it.subscribe("image/socket", 100, &QNode::videoSocketCallback, this);
-  videoArg_sub  = n.subscribe("image/arg", 10, &QNode::videoArgCallback, this);
 	wakeup_sub = n.subscribe("rob_awaken_wakeup", 10, &QNode::wakeupCallback, this);
   iat_sub    = n.subscribe("rob_iat_txt", 10, &QNode::iatCallback, this);
   ttsok_sub  = n.subscribe("rob_answer_txt", 10, &QNode::ttsokCallback, this); 
@@ -123,15 +122,6 @@ void QNode::videoSocketCallback(const sensor_msgs::ImageConstPtr &msg) {
   catch (cv_bridge::Exception& e) {
     ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
   }
-}
-
-void QNode::videoArgCallback(const ros_video::video::ConstPtr& msg) {
-  arg.frames = msg->frames;
-  arg.fps = msg->fps;
-  arg.size[0] = msg->size[0];
-  arg.size[1] = msg->size[1];
-  // std::cout << arg.frames << "  " << arg.fps << "  " << arg.size[0] <<  std::endl;
-  Q_EMIT updataVideoArg();
 }
 
 void QNode::wakeupCallback(const std_msgs::String::ConstPtr& msg) {

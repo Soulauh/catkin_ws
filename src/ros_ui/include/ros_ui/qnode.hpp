@@ -10,7 +10,6 @@
 #include <QImage>
 #include <QStringListModel>
 #include <std_msgs/String.h>
-#include <ros_video/video.h>
 #include <ros_video/srvSwitchVideo.h>
 
 #include <opencv2/core/core.hpp>
@@ -48,7 +47,6 @@ public:
 	void iatCallback(const std_msgs::String::ConstPtr& msg);
 	void ttsCallback(const std_msgs::String::ConstPtr& msg);
 	void ttsokCallback(const std_msgs::String::ConstPtr& msg);
-	void videoArgCallback(const ros_video::video::ConstPtr& msg);
 
 Q_SIGNALS:
     void rosShutdown();

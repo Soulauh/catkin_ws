@@ -19,7 +19,7 @@ bool music_playing = false;
 int music_con = 0;
 
 vector<string> file_name;
-string path = "/home/soulauh/catkin_ws/src/ros_voice/music";
+string path = "/home/soulauh/.material/music";
 
 void GetFileNames(string path, vector<string>& filenames) {
     DIR *pDir;
